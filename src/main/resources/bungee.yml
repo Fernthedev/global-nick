@@ -1,0 +1,5 @@
+name: FernGnicks
+main: com.github.fernthedev.gnick.bungee.BungeePlugin
+author: Fernthedev
+version: 1.0.0
+website: https://github.com/Fernthedev/global-nick

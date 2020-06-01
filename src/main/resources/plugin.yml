@@ -1,0 +1,7 @@
+name: FernGnicks
+main: com.github.fernthedev.gnick.spigot.SpigotPlugin
+author: Fernthedev
+depends:
+  - Essentials
+version: 1.0.0
+website: https://github.com/Fernthedev/global-nick
