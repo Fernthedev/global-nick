@@ -32,13 +32,7 @@ public class NickManager implements Listener {
 
     public static void handleNick(String uuid, String playerName, String nick) {
         System.out.println(nick + " " + uuid);
-        if (nick != null) {
-            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:com.github.fernthedev.gnick.spigot.nick " + playerName + " " + nick);
-            nicknames.put(uuid, nick);
-        } else {
-            Player pl = Bukkit.getPlayer(uuid);
-            if (pl != null) pl.sendMessage(ChatColor.RED + "Unable to set com.github.fernthedev.gnick.spigot.nick");
-        }
+        applyNick(playerName, uuid, nick);
     }
 
     private void runSqlSync() {
@@ -123,19 +117,23 @@ public class NickManager implements Listener {
 //                            }
 //                        }
 
-                        if (nick != null) {
-                            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:com.github.fernthedev.gnick.spigot.nick " + playerName + " " + nick);
-                            nicknames.put(uuid,nick);
-                        } else {
-                            Player pl = Bukkit.getPlayer(uuid);
-                            if (pl != null) pl.sendMessage(ChatColor.RED + "Unable to set com.github.fernthedev.gnick.spigot.nick");
-                        }
+                        applyNick(playerName, uuid, nick);
 
                     }
                 }
             }
         } catch (IOException | SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void applyNick(String playerName, String uuid, String nick) {
+        if (nick != null) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "essentials:nick " + playerName + " " + nick);
+            nicknames.put(uuid, nick);
+        } else {
+            Player pl = Bukkit.getPlayer(uuid);
+            if (pl != null) pl.sendMessage(ChatColor.RED + "Unable to set nick");
         }
     }
 

@@ -19,7 +19,7 @@ import com.github.fernthedev.gnick.spigot.NickDatabaseInfo;
 import java.io.ByteArrayOutputStream;
 import java.sql.SQLException;
 
-@CommandAlias("fnick|gnick|com.github.fernthedev.gnick.spigot.nick|fnick")
+@CommandAlias("fnick|gnick|nick|fnick")
 public class FernNick extends BaseCommand {
     public FernNick() {
 
@@ -48,11 +48,11 @@ public class FernNick extends BaseCommand {
     }
 
     @Description("Change nickname using MySQL")
-    @CommandPermission("fernc.bpapi")
+    @CommandPermission("fernc.nick")
     @HelpCommand
     @Default
     @CommandCompletion("* *")
-    public void onNick(CommandIssuer sender, @CommandPermission("fernc.com.github.fernthedev.gnick.spigot.nick.others") @Optional IFPlayer<?> player, String newNick) {
+    public void onNick(CommandIssuer sender, @CommandPermission("fernc.nick.others") @Optional IFPlayer<?> player, String newNick) {
 
 //        Connection connection = DatabaseHandler.getConnection();
 
@@ -67,7 +67,7 @@ public class FernNick extends BaseCommand {
 
         if (player == null) player = (IFPlayer<?>) sender;
 
-        if (newNick.contains("&") && !sender.hasPermission("fernc.com.github.fernthedev.gnick.spigot.nick.color")) {
+        if (newNick.contains("&") && !sender.hasPermission("fernc.nick.color")) {
 
             sender.sendError(MessageKeys.PERMISSION_DENIED_PARAMETER);
 //            sendMessage(sender, "&cYou do not have permissions to use color nicknames.");
